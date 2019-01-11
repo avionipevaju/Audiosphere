@@ -1,0 +1,62 @@
+version: "3.5"
+services:
+  discogs_py:
+    container_name: discogs_py
+    build:
+      context: ./discogs
+      dockerfile: /Dockerfile
+    image: discogs_py:1.0.0
+    environment:
+      - discogs_user_token=ncRtJpopxXrdxiIOZHDKBRgKfCHjLvdqSzbnkFZf
+    ports:
+       - "4003:8891"
+  insta_feed:
+    container_name: insta_feed
+    build:
+      context: ./instagram
+      dockerfile: /Dockerfile
+    image: insta_feed:1.0.0
+    ports:
+       - "4004:8892"
+  moody:
+    container_name: moody_py
+    build:
+      context: ./twitter
+      dockerfile: /Dockerfile
+    image: moody_py:1.0.0
+    environment:
+      - consumer_key=hUI7OwSYDNsFuFCd0M0CqXQKa
+      - consumer_secret=uTYTdc52FMJpdRj0pCj6vRXouFYkd5skDAts7WTWEQIPy2tZb9
+      - access_token_key=1015930872112074752-ADPjONLZgmhw77HDJKjDKfH3OFuQf5
+      - access_token_secret=DzkA5rCC6t62FaF4KUiakIPTyHVluCka8RPYivlEvn1rc
+      - validate_requests=False
+    ports:
+       - "4000:8887"
+  moody_sense:
+    container_name: moody_sense
+    build:
+      context: ./redis
+      dockerfile: /Dockerfile
+    image: moody_sense:1.0.0
+    ports:
+       - "6380:6380"
+  yahoo_weather:
+      container_name: yahoo_weather
+      build:
+        context: ./yahoo_weather
+        dockerfile: /Dockerfile
+      image: yahoo_weather:1.0.0
+      ports:
+         - "4001:8889"
+  youtube_search:
+    container_name: youtube_search
+    build:
+      context: ./youtube
+      dockerfile: /Dockerfile
+    image: youtube_search:1.0.0
+    ports:
+       - "4002:8890"
+networks:
+  default:
+    external:
+      name: moody_py
