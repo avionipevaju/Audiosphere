@@ -2,9 +2,9 @@
 A platform that fulfils your audiophile needs.
 
 ## Services
-- **MoodyPy** - Twitter bot that tweets songs from YouTube based on the current weather. Other really cool music related stuff too. 
+- **MoodyPy** - Twitter bot that tweets content to a Twitter account. 
 - **MoodySense** - Moody-Py Redis storage with custom configuration. 
-- **Discogs wrapper** - Get a random song from Discogs database of a given genre or from a specified artist. 
+- **Discogs wrapper** - Find a random song from Discogs database of a given genre or from a specified artist. 
 - **YahooWeather wrapper** - Get the latest weather conditions for a city. Powered by Yahoo Weather. 
 - **YoutubeSearch wrapper** - Easy way to find a YouTube video. 
 - **InstaFeed** - Quick way to get the latest posts from your favorite Instagram account.
