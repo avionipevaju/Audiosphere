@@ -32,7 +32,8 @@ def post():
 @api.route('/moody-py/api/mood', methods=['POST'])
 def mood():
     """
-    :return:
+    Returns a genre for a given weather condition code.
+    :return:Response: Json object with one field genre.
     """
     twitter_request = TwitterRequest(request.get_json())
     if os.environ['validate_requests'] == 'False':

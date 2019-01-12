@@ -61,8 +61,6 @@ class Moody:
         twitter_content = twitter_request.content
         if twitter_content is None or len(twitter_content) == 0:
             return TwitterResponse(description='Twitter content to post cannot be empty!')
-        if len(twitter_content) >= 140:
-            return TwitterResponse(description='Tweet cannot be longer than 140 characters!')
         try:
             status = self.api.PostUpdate(twitter_content)
             logging.info('Posted twit with status: %s', status)
