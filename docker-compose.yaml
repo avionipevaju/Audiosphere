@@ -29,7 +29,7 @@ services:
       - consumer_secret=uTYTdc52FMJpdRj0pCj6vRXouFYkd5skDAts7WTWEQIPy2tZb9
       - access_token_key=1015930872112074752-ADPjONLZgmhw77HDJKjDKfH3OFuQf5
       - access_token_secret=DzkA5rCC6t62FaF4KUiakIPTyHVluCka8RPYivlEvn1rc
-      - validate_requests=False
+      - validate_requests=True
     ports:
        - "4000:8887"
   moody_sense:
