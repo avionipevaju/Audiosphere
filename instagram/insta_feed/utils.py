@@ -30,7 +30,7 @@ def create_json_response(source):
     """
     try:
         if source is None:
-            return create_json_error_response(-2, "Response is empty!", 200)
+            return create_json_error_response(-2, "Response is empty!", 400)
         return Response(json.dumps(source.__dict__), status=200, mimetype='application/json')
     except Exception as e:
         logging.error('Error creating json response from %s,', source, e.message)

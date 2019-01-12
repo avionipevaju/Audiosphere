@@ -16,7 +16,7 @@ def random_song_by_genre():
         genre = json_request['genre']
         random_track = discogs_search_engine.get_random_track_by_genre(genre)
         if random_track is None:
-            return json_utils.create_json_error_response(-1, 'Track not found', 200)
+            return json_utils.create_json_error_response(-1, 'Track not found', 400)
         else:
             result = {"random_track": random_track}
             return json_utils.create_json_response(result)
@@ -32,7 +32,7 @@ def random_song_by_artist():
         artist_name = json_request['artist']
         random_track = discogs_search_engine.get_random_track_by_artist(artist_name)
         if artist_name is None:
-            return json_utils.create_json_error_response(-1, 'Track not found', 200)
+            return json_utils.create_json_error_response(-1, 'Track not found', 400)
         else:
             result = {"random_track": random_track}
             return json_utils.create_json_response(result)

@@ -17,7 +17,7 @@ def search_youtube():
         feeling_lucky = json_request['feeling_lucky']
         youtube_video = youtube_search_engine.search_video(search_string, feeling_lucky=feeling_lucky)
         if youtube_video is None:
-            return json_utils.create_json_error_response(-1, 'Video not found', 200)
+            return json_utils.create_json_error_response(-1, 'Video not found', 400)
         else:
             result = {"youtube_video": youtube_video}
             return json_utils.create_json_response(result)

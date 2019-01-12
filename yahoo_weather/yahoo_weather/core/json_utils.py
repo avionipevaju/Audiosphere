@@ -11,7 +11,7 @@ def create_json_response(source):
     """
     try:
         if source is None:
-            return create_json_error_response(-2, "Response is empty!", 200)
+            return create_json_error_response(-2, "Response is empty!", 400)
         else:
             return Response(json.dumps(source.__dict__, indent=4, sort_keys=True, default=str), status=200,
                             mimetype='application/json')
