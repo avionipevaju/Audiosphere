@@ -21,12 +21,8 @@ class TwitterRequest:
         ExecutionRequest assembler
         :param json_request: JSON represented execution request
         """
-        if json_request is None:
-            self.instruction = Instruction.PROCESS_WEATHER_DATA
-        else:
-            self.instruction = json_request['instruction']
-            self.content = json_request['content']
-            self.requested_by = json_request['requestedBy']
+        self.content = json_request['content']
+        self.requested_by = json_request['requestedBy']
 
 
 class TwitterResponse:
