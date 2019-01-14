@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/avionipevaju/Audiosphere.svg?branch=master)](https://travis-ci.org/avionipevaju/Audiosphere)
 # Audiosphere
 A platform that fulfils your audiophile needs.
 
