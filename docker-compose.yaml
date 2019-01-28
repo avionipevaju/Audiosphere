@@ -46,6 +46,10 @@ services:
         context: ./yahoo_weather
         dockerfile: /Dockerfile
       image: yahoo_weather:1.0.0
+      environment:
+        - app_id=GRqqH452
+        - consumer_key=dj0yJmk9Y0VaOFczN0M1czdhJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTRk
+        - consumer_secret=15df2780a9c9e41160c47e233f843e5843a84d8f
       ports:
          - "4001:8889"
   youtube_search:

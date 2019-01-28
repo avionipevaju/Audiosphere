@@ -13,6 +13,7 @@ youtube_search_engine = YouTube()
 def search_youtube():
     try:
         json_request = request.get_json()
+        logging.info("Received youtube search request with body %s", json_request)
         search_string = json_request['search_string']
         feeling_lucky = json_request['feeling_lucky']
         youtube_video = youtube_search_engine.search_video(search_string, feeling_lucky=feeling_lucky)
@@ -20,6 +21,7 @@ def search_youtube():
             return json_utils.create_json_error_response(-1, 'Video not found', 400)
         else:
             result = {"youtube_video": youtube_video}
+            logging.info("Result of searching for a video %s is %s", search_string, result)
             return json_utils.create_json_response(result)
     except Exception as e:
         logging.error('Error searching YouTube: %s', e.message)

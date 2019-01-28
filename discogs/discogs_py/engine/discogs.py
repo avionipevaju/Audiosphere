@@ -30,8 +30,10 @@ class Discogs:
         try:
             artist = self.search_engine.search(artist_name, type='artist')[0]
             random_release = utils.get_random_from_collection(artist.releases)
+            logging.info('Found random release %s for artist %s with tracklist %s', random_release.title, artist.name,
+                         random_release.tracklist)
             random_track = utils.get_random_from_collection(random_release.tracklist)
-            logging.info('Resolved track %s for artist %s', random_track, artist_name)
+            logging.info('Resolved track %s for artist %s', random_track.title, artist.name)
             return "{} {}".format(artist_name, random_track.title)
         except Exception as e:
             logging.error(e.message)
@@ -53,7 +55,10 @@ class Discogs:
             albums = soup.findAll(attrs={'class': 'card card_large float_fix shortcut_navigable'})
             random_album_id = utils.get_random_from_collection(albums, 'data-object-id')
             album = self.search_engine.release(random_album_id)
-            track = "{} {}".format(album.artists[0].name, utils.get_random_from_collection(album.tracklist).title)
+            artist = album.artists[0].name
+            track_list = album.tracklist
+            logging.info('Found album %s - %s with track list %s for genre %s',artist, album.title, album.tracklist, genre)
+            track = "{} {}".format(artist, utils.get_random_from_collection(track_list).title)
             logging.info('Resolved track: %s for genre: %s with relevancy: %s', track, genre, relevancy)
             return track
         except Exception as e:

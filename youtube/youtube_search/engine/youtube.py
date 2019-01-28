@@ -39,7 +39,7 @@ class YouTube:
                 target_url = self.YOUTUBE_URL + videos[0]['href']
             else:
                 target_url = self.YOUTUBE_URL + utils.get_random_from_collection(videos, 'href')
-            logging.info('YouTube search url: %s', target_url)
+            logging.info('YouTube url %s for search string %s', target_url, search_string)
             return target_url
         except Exception as e:
             logging.error(e.message)

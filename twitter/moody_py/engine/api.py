@@ -1,3 +1,4 @@
+import logging
 import os
 
 from flask import Flask, request
@@ -18,14 +19,19 @@ def post():
     :return: Response: Json represented TwitterResponse object
     """
     twitter_request = TwitterRequest(request.get_json())
+    logging.info("Received twitter post request with body %s", request.get_json())
     if os.environ['validate_requests'] == 'False':
+        logging.warn('Moody isn\'t validating requests!')
         twitter_response = moody.tweet(twitter_request)
+        logging.info("Twitter response %s", twitter_response)
         return json_utils.create_json_response(twitter_response, simple=True)
     else:
         if moody.validate_request(twitter_request, request.headers['Authorization']):
             twitter_response = moody.tweet(twitter_request)
+            logging.info("Twitter response for post tweet request %s", twitter_response)
             return json_utils.create_json_response(twitter_response, simple=True)
         else:
+            logging.info('Bad credentials!')
             return json_utils.create_json_error_response(-1, "Unauthorized!", 401)
 
 
@@ -36,9 +42,12 @@ def mood():
     :return:Response: Json object with one field genre.
     """
     twitter_request = TwitterRequest(request.get_json())
+    logging.info("Received twitter mood request with body %s", request.get_json())
     if os.environ['validate_requests'] == 'False':
+        logging.warn('Moody isn\'t validating requests!')
         genre = moody.mood(twitter_request)
         result = {"genre": genre}
+        logging.info("Twitter response for mood search %s", result)
         return json_utils.create_json_response(result)
     else:
         if moody.validate_request(twitter_request, request.headers['Authorization']):
@@ -46,4 +55,5 @@ def mood():
             result = {"genre": genre}
             return json_utils.create_json_response(result)
         else:
+            logging.info('Bad credentials!')
             return json_utils.create_json_error_response(-1, "Unauthorized!", 401)
