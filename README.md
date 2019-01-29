@@ -10,11 +10,15 @@ A platform that fulfils your audiophile needs.
 - **YoutubeSearch wrapper** - Easy way to find a YouTube video. 
 - **InstaFeed** - Quick way to get the latest posts from your favorite Instagram account.
 
-## Prerequisite
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisite
 Before running Audiosphere platform locally the following requirements must be met
 - Docker and docker-compose are installed on your machine
 
-## Getting started
+### Installing
 To run Audiosphere services locally just run the following command
 ```
 docker-compose up
