@@ -1,4 +1,5 @@
 import logging
+import os
 
 from weather import Weather, Unit
 
@@ -17,7 +18,8 @@ class Forecast:
         :param unit: Temperature unit
         """
         logging.info('Configuring forecast data for %s in %s', city, unit)
-        self.weather = Weather(unit=unit)
+        if os.environ['enable_mock'] == 'False':
+            self.weather = Weather(unit=unit)
         self.city = city
 
     def current_weather(self):
@@ -25,6 +27,10 @@ class Forecast:
         Gets the current forecast for a city
         :return: Weather Data representing the current forecast of a city
         """
-        weather_data = WeatherData(self.weather.lookup_by_location(self.city))
+        if os.environ['enable_mock'] == 'True':
+            weather_data = WeatherData(None)
+            weather_data.location = self.city
+        else:
+            weather_data = WeatherData(self.weather.lookup_by_location(self.city))
         logging.info('Retrieved current forecast for %s %s', self.city, weather_data)
         return weather_data

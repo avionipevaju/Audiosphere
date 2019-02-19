@@ -13,13 +13,29 @@ class WeatherData:
         Weather data assembler
         :param weather_object: Yahoo Weather weather_object
         """
-        self.location = self.resolve_location(weather_object.description)
-        self.condition = weather_object.condition.text
-        self.condition_code = weather_object.condition.code
-        self.temperature = weather_object.condition.temp
-        self.date = weather_object.condition.date
-        # TODO Change time and time of day not to be local but to depend on the location and the timezone
+        if weather_object is None:
+            self.create_mock_response()
+        else:
+            self.location = self.resolve_location(weather_object.description)
+            self.condition = weather_object.condition.text
+            self.condition_code = weather_object.condition.code
+            self.temperature = weather_object.condition.temp
+            self.date = weather_object.condition.date
+            # TODO Change time and time of day not to be local but to depend on the location and the timezone
+            self.time = datetime.datetime.time(datetime.datetime.now())
+            self.time_of_day = self.get_time_of_day()
+
+    def create_mock_response(self):
+        """
+        Creates a mock response from YahooWeather server because of temporary unavailable service.
+        :param location:
+        :return:
+        """
+        self.condition = 'Sunny'
+        self.condition_code = 12
+        self.temperature = 'N/A'
         self.time = datetime.datetime.time(datetime.datetime.now())
+        self.date = self.time.strftime('%d/%m/%Y')
         self.time_of_day = self.get_time_of_day()
 
     @staticmethod
