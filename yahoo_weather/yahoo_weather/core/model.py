@@ -34,8 +34,8 @@ class WeatherData:
         self.condition = 'Sunny'
         self.condition_code = 12
         self.temperature = 'N/A'
+        self.date = datetime.datetime.now()
         self.time = datetime.datetime.time(datetime.datetime.now())
-        self.date = self.time.strftime('%d/%m/%Y')
         self.time_of_day = self.get_time_of_day()
 
     @staticmethod
